@@ -19,7 +19,7 @@ from sklearn.metrics import mean_squared_error, r2_score, davies_bouldin_score
 #read the dataset
 df = pd.read_csv('archive/Clean_Dataset.csv')
 
-#Encoding Categorical Columns
+'''Encoding Categorical Columns'''
 
 cols_encode = ['airline', 'source_city', 'departure_time', 'stops', 'arrival_time', 'destination_city', 'class'] #columns we need to encode (categorical columns)
 
@@ -32,7 +32,7 @@ edf = pd.concat([df.drop(columns=cols_encode), df_encoded], axis=1) #drops categ
 
 print(edf.head()) #Output encoded dataframe head to verify encoding
 
-# Split the data into training and testing sets
+''' Split the data into training and testing sets'''
 
 X = edf.drop(columns=['price', 'flight']) #training data columns
 y = edf.iloc[:,4]
@@ -45,7 +45,9 @@ print(X_train.head())
 print(y_test.head())
 print(y_train.head())
 
+'''Visualization'''
 
+''' Model Training '''
 # Linear Regression Model
 print("Training linear regression model...")
 lin_reg = LinearRegression()
@@ -62,14 +64,13 @@ print("Done training ridge regression.")
 
 # Lasso Regression Model: needs scaled data for faster weight convergences
 print("Training lasso regression model...")
-lasso_reg = Lasso(alpha=0.01)
+lasso_reg = Lasso(max_iter=10000, random_state=42,alpha=0.01)
 lasso_reg.fit(X_train, y_train)
 y_pred_lasso = lasso_reg.predict(X_test)
 print("Done lasso linear regression.")
 
-# Metric Analysis
+'''Metric Analysis'''
 # Linear Regression Metrics: RMSE, R2 Score for all linear models
-
 #list of linear model prediction outputs
 LinearPredictions =  {
     'Linear Regression Model': y_pred_lin,
