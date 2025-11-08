@@ -6,6 +6,7 @@ Uses a cleaned dataset from https://www.kaggle.com/datasets/shubhambathwal/fligh
 Expected outputs:
 - Encoded DataFrame head to verify categorical encoding.
 - Training and testing data heads.
+-Visualizations (not implemented yet)
 - R2 Score, Mean Squared Error (MSE), Root Mean Squared Error (RMSE) for Linear Regression, Ridge Regression, and Lasso Regression models.
 '''
 
