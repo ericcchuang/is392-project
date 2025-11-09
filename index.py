@@ -2,6 +2,7 @@
 Python Script for Data Preprocessing, Model Training, and Evaluation of flight data for price prediction.
 Uses a cleaned dataset from https://www.kaggle.com/datasets/shubhambathwal/flight-price-prediction
     - Downloaded and kept in 'archive' folder as 'Clean_Dataset.csv'
+    - Already cleaned and normalized, encoding categorical variables needed.
 
 Expected outputs:
 - Encoded DataFrame head to verify categorical encoding.
@@ -33,7 +34,7 @@ df_encoded = pd.DataFrame(encode_data, columns=fnames, index=df.index) #new data
 
 edf = pd.concat([df.drop(columns=cols_encode), df_encoded], axis=1) #drops categorical and makes new datafram with encoding along columns
 
-print(edf.head()) #Output encoded dataframe head to verify encoding
+print("Encoded dataframe head:\n", edf.head()) #Output encoded dataframe head to verify encoding
 
 ''' Split the data into training and testing sets'''
 
@@ -44,6 +45,7 @@ X_train, X_test, y_train, y_test = train_test_split(
     X, y, test_size=0.1, random_state=0) #5% test 95% training split
 
 #Output heads of training and testing data
+print("\nData splits:\n")
 print(X_test.head()) 
 print(X_train.head())
 print(y_test.head())
@@ -54,7 +56,7 @@ print(X.shape)
 
 ''' Model Training '''
 # Linear Regression Model
-print("Training linear regression model...")
+print("\nTraining linear regression model...")
 lin_reg = LinearRegression()
 lin_reg.fit(X_train, y_train)
 y_pred_lin = lin_reg.predict(X_test)
