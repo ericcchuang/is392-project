@@ -69,7 +69,7 @@ print("Done training ridge regression.\n")
 
 # Lasso Regression Model: needs scaled data for faster weight convergences
 print("Training lasso regression model...")
-lasso_reg = Lasso(alpha=0.01) # arbitrary choice
+lasso_reg = Lasso(max_iter=10000, random_state=42,alpha=0.01)
 lasso_reg.fit(X_train, y_train)
 y_pred_lasso = lasso_reg.predict(X_test)
 print("Done lasso linear regression.\n")
