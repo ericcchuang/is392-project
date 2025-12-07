@@ -175,3 +175,4 @@ for name, y_pred in Predictions.items():
     except Exception as e:
         print("\nError calculating R2 Score: ", e)
 
+print(feature_importance_df[['feature', 'importance']].head(10))
