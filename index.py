@@ -55,6 +55,9 @@ print(f"Mean price: ${df['price'].mean():.2f}")
 print(f"Median price: ${df['price'].median():.2f}")
 print(f"Price range: ${df['price'].min():.2f} - ${df['price'].max():.2f}")
 
+print("\n=== Price by Departure Time ===")
+print(df.groupby('departure_time')['price'].agg(['mean', 'median', 'std', 'count']))
+
 ''' Split the data into training and testing sets'''
 
 X = edf.drop(columns=['price', 'flight', 'Unnamed: 0']) #training data columns
