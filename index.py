@@ -85,8 +85,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 #price histogram
-plt.hist(df['price'], bins=50, edgecolor='white')
-plt.xlabel('Price')
+df.boxplot("price")
 plt.ylabel('Count')
 plt.title('Price Box Plot')
 plt.show()
@@ -121,12 +120,13 @@ plt.title("Price based on duration")
 plt.show()
 
 #price + days left scatter plot
-sns.scatterplot( x = "days_left", y = "price",data=df, alpha=0.01, s=15)
+sns.scatterplot( x = "days_left", y = "price",data=df, hue="class", alpha=0.01, s=15)
 plt.title("Price based on days left to flight")
+plt.legend(labels=['Orange - Business', 'Blue - Economy']);
 plt.show()
 
 #seaborn plot map of histograms based on airline and price
-ap = sns.FacetGrid(df, col="airline", col_wrap=2, height=10)
+ap = sns.FacetGrid(df, col="airline", col_wrap=3, height=5)
 ap.map(sns.histplot, "price", bins=25)
 plt.show()
 
